@@ -39,7 +39,7 @@ Bu proje aşağıdaki açılardan özgün bir çalışmadır:
 
   -  **Gerçek zamanlı bileşen tespiti** — YOLOv5s modeli ile 10 sınıf
   -  **Otomatik cihaz tanıma** — DM100 / XIO110 komponent sayım skoruna göre otomatik belirlenir, manuel seçim de desteklenir.
-  -  **Dört aşamalı denetim akışı** — Yüzey Kontrolü → Etiket → Barkod → Sonuc
+  -  **Dört aşamalı denetim akışı** — Yüzey Kontrolü → Etiket Kontrolü → Barkod Okuma → Sonuç
   -  **FAIL yönlendirme** — Herhangi bir aşama başarısız olsa bile barkod okunur, izlenebilirlik hiç kopmaz
   -  **Otomatik kayıt** — Tüm sonuçlar seri numarasıyla birlikte SQLite veritabanına kaydedilir.
   -  **Modern arayüz** — PySide6 ile canlı kamera, durum paneli ve geçmiş sonuçlar tek ekranda bulunur.
