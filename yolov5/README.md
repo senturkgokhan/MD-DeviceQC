@@ -49,23 +49,72 @@ sıfırlanır ve yeni ürün için FRONT aşamasına döner.
 
 > **Temel tasarım kararı:** Herhangi bir aşama başarısız olsa bile sistem barkod okuma aşamasını atlamaz. Bu sayede hatalı cihazlar seri numarasıyla birlikte kayıt altına alınır ve izlenebilirlik hiçbir koşulda kopmaz.
 
+## Model ve Dataset
 
+### Dataset
 
+Tüm eğitim verisi Mikrodev üretim ortamında, gerçek DM100 ve XIO110 cihazları üzerinde bizzat toplanmıştır. Görseller laptop kamerası ve IMX219 kamera kullanılarak farklı açı ve ışık koşullarında elde edilmiştir.
 
+| | Görüntü |
+|--|---------|
+| Ham toplam | 1.682 |
+| Train (aug. öncesi) | 1.190 |
+| Train (aug. sonrası) | 3.570 |
+| Validation | 334 |
+| Test | 158 |
+| **Toplam** | **4.062** |
 
+### Etiketleme
+Tüm görseller Roboflow platformu üzerinde 10 sınıf için her bileşen tek tek, bizzat etiketlenmiştir.
 
-
-
-## Ana dosyalar
-
-| Dosya | Açıklama |
+| Sınıf | Açıklama |
 |-------|----------|
-| `qc_launcher.py` | PySide6 arayüz |
-| `qc_engine.py` | Kamera, YOLO, aşamalı QC |
-| `config/device_profiles.yaml` | Cihaz profilleri |
-| `config/app_settings.json` | Kullanıcı ayarları (yerelde oluşur) |
-| `results/devices.db` | SQLite kayıtları |
+| DM100 | Cihaz tipi marker |
+| XIO110 | Cihaz tipi marker |
+| Ethernet | Ethernet portu |
+| usb-b | USB-B portu |
+| Klemens-Group | Terminal blok grubu |
+| Led-Group | LED grubu |
+| SD-Card | SD kart yuvası |
+| Quality-Control | Kalite kontrol etiketi |
+| Warranty | Garanti etiketi |
+| ID-Switch | Kimlik anahtarı (yalnızca XIO110) |
 
-## Taban
+### Augmentation
+Augmentation yalnızca eğitim kümesine uygulanmıştır. Doğrulama ve test kümeleri ham halde tutulmuştur.
 
-[Ultralytics YOLOv5](https://github.com/ultralytics/yolov5) üzerine inşa edilmiştir. Güncellemeler için `upstream` remote kullanılabilir.
+Uygulanan yöntemler: Rotation, Hue, Saturation, Brightness, Exposure, Blur, Noise
+> Yatay çevirme ve 90° döndürme uygulanmamıştır — cihazlar 
+> simetrik olmadığından bu dönüşümler geçersiz eğitim örnekleri üretir.
+
+### Model Eğitimi ve Karşılaştırma
+
+Sistem geliştirilirken YOLOv8s ve YOLOv5s modelleri farklı 
+parametrelerle karşılaştırmalı olarak eğitilmiştir.
+
+| Model | Epoch | Görüntü Boyutu | mAP@0.5 | mAP@0.5:0.95 | Precision | Recall |
+|-------|-------|----------------|---------|--------------|-----------|--------|
+| YOLOv8s | 150 | 640 | ~0.987 | ~0.835 | ~0.970 | ~0.980 |
+| YOLOv8s | 200 | 640 | ~0.987 | ~0.820 | ~0.970 | ~0.980 |
+| YOLOv5s | 150 | 832 | ~0.980 | ~0.800 | ~0.980 | ~0.980 |
+
+**Eğitim Grafikleri:**
+
+**YOLOv8s — 150 Epoch**
+<img width="2400" height="1200" alt="results" src="https://github.com/user-attachments/assets/55467db6-8170-4a59-bb7b-143fb51beb1a" />
+
+**YOLOv8s — 200 Epoch**
+<img width="2400" height="1200" alt="results" src="https://github.com/user-attachments/assets/dca84ba5-2f0e-46fc-8c0f-e667dbd26eb0" />
+
+**YOLOv5s — 150 Epoch — 832 Görüntü Boyutu (Seçilen Model)**
+<img width="2400" height="1200" alt="results" src="https://github.com/user-attachments/assets/ab882498-f498-42a2-8667-53aecf644888" />
+
+### Neden YOLOv5s Seçildi?
+
+- YOLOv8s metrik olarak biraz daha iyi çıkmıştır ancak fark üretim ortamında anlamlı bir fark yaratmamaktadır.
+- YOLOv5s eğitim eğrisi çok daha stabil seyretmiştir.
+- Sahada PC ve test laptobu üzerinde YOLOv5s daha akıcı çalışmaktadır.
+- Endüstriyel kullanımda doğruluk ve gerçek zamanlı performans dengesi kritik öneme sahiptir.
+
+
+
