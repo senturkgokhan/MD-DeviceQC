@@ -9,10 +9,10 @@ https://www.youtube.com/watch?v=pNHOG5MSDHc
 ## Neden Geliştirildi?
 
 Endüstriyel cihaz üretiminde görsel kalite kontrol, geleneksel olarak üretim hattının sonunda eğitimli personel tarafından manuel şekilde yürütülmektedir. Bu yöntem;
-- İnsan dikkatine bağlı olduğundan zaman içinde hata oranı artmaktadır
-- Kontrol süreci kişiden kişiye farklılık göstermekte, standart dışı kalmaktadır
-- Hatalı geçen cihazlar izlenebilir biçimde kayıt altına alınamamaktadır
-- Üretim hızı arttıkça manuel kontrol bir darboğaz haline gelmektedir
+- İnsan dikkatine bağlı olduğundan zaman içinde hata oranı artmaktadır.
+- Kontrol süreci kişiden kişiye farklılık göstermekte, standart dışı kalmaktadır.
+- Hatalı geçen cihazlar izlenebilir biçimde kayıt altına alınamamaktadır.
+- Üretim hızı arttıkça manuel kontrol bir darboğaz haline gelmektedir.
 
 MD-DeviceQC bu sorunları ortadan kaldırmak amacıyla geliştirilmiştir. Her denetimi aynı standartla gerçekleştirir ve sonucu seri numarasıyla birlikte otomatik olarak kayıt altına alır.
 
@@ -25,19 +25,19 @@ Bu proje aşağıdaki açılardan özgün bir çalışmadır:
 - **Özgün pipeline:** YOLOv5 + OpenCV + pyzbar + PySide6 bileşenlerinin bu tip endüstriyel cihazlar için entegrasyonu özgün bir yazılım mimarisi ortaya koymaktadır.
 - **Üretime uygun tasarım:** Sistem bileşenleri ve denetim adımları, Mikrodev üretim hattının gerçek koşulları analiz edilerek belirlenmiştir:
   - Sabit kamera ve kontrollü aydınlatma kullanılarak üretim hattına uygun bir görüntü alma istasyonu tasarlanmıştır.
-  - Operatörün cihazı elle tutarak kameraya göstermesi şeklinde çalışan bir denetim akışı tasarlanmıştır
-  - Tutarlı görüntü kalitesi için özel bir aydınlatma ortamı oluşturulmuştur
-  - Sistem, mevcut üretim akışını bozmadan entegre olacak şekilde tasarlanmıştır
+  - Operatörün cihazı elle tutarak kameraya göstermesi şeklinde çalışan bir denetim akışı tasarlanmıştır.
+  - Tutarlı görüntü kalitesi için özel bir aydınlatma ortamı oluşturulmuştur.
+  - Sistem, mevcut üretim akışını bozmadan entegre olacak şekilde tasarlanmıştır.
 - **Uygulanabilir çözüm:** Düşük maliyetli ve kurulumu kolay yapısıyla küçük ve orta ölçekli Türk endüstriyel üreticilere doğrudan uygulanabilir bir kalite kontrol çözümü sunmaktadır.
 
 ## Özellikler
 
   -  **Gerçek zamanlı bileşen tespiti** — YOLOv5s modeli ile 10 sınıf
-  -  **Otomatik cihaz tanıma** — DM100 / XIO110 komponent sayım skoruna göre otomatik belirlenir, manuel seçim de desteklenir
+  -  **Otomatik cihaz tanıma** — DM100 / XIO110 komponent sayım skoruna göre otomatik belirlenir, manuel seçim de desteklenir.
   -  **Dört aşamalı denetim akışı** — Yüzey Kontrolü → Etiket → Barkod → Sonuc
   -  **FAIL yönlendirme** — Herhangi bir aşama başarısız olsa bile barkod okunur, izlenebilirlik hiç kopmaz
-  -  **Otomatik kayıt** — Tüm sonuçlar seri numarasıyla birlikte SQLite veritabanına kaydedilir
-  -  **Modern arayüz** — PySide6 ile canlı kamera, durum paneli ve geçmiş sonuçlar tek ekranda
+  -  **Otomatik kayıt** — Tüm sonuçlar seri numarasıyla birlikte SQLite veritabanına kaydedilir.
+  -  **Modern arayüz** — PySide6 ile canlı kamera, durum paneli ve geçmiş sonuçlar tek ekranda bulunur.
   -  **Kolay konfigürasyon** — Yeni cihaz tipi eklemek için sadece YAML dosyası güncellenir, kod değişikliği gerekmez.
     
 ## Sistem Önizlemesi
