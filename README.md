@@ -31,21 +31,28 @@ Bu proje aşağıdaki açılardan özgün bir çalışmadır:
 
   - 🎯 **Gerçek zamanlı bileşen tespiti** — YOLOv5s modeli ile 10 sınıf
   - 🔍 **Otomatik cihaz tanıma** — DM100 / XIO110 komponent sayım skoruna göre otomatik belirlenir, manuel seçim de desteklenir
-  - 📋 **Üç aşamalı denetim akışı** — Yüzey Kontrolü → Etiket → Barkod
+  - 📋 **Üç aşamalı denetim akışı** — Yüzey Kontrolü → Etiket → Barkod → Sonuc
   - ⚠️ **FAIL yönlendirme** — Herhangi bir aşama başarısız olsa bile barkod okunur, izlenebilirlik hiç kopmaz
   - 💾 **Otomatik kayıt** — Tüm sonuçlar seri numarasıyla birlikte SQLite veritabanına kaydedilir
   - 🖥️ **Modern arayüz** — PySide6 ile canlı kamera, durum paneli ve geçmiş sonuçlar tek ekranda
   - ⚙️ **Kolay konfigürasyon** — Yeni cihaz tipi eklemek için sadece YAML dosyası güncellenir, kod değişikliği gerekmez.
     
 ## Sistem Önizlemesi
-
- | 
- Ana Menü 
- | 
+### Ana Menü
+Uygulamanın açılış ekranı. Start Inspection butonu ile kalite kontrol süreci başlatılır, Test Results ile daha önce denetlenen cihazların sonuçları görüntülenir, Settings ile kamera ve model ayarları yapılandırılır.
 <img width="785" height="833" alt="Ekran görüntüsü 2026-06-05 092314" src="https://github.com/user-attachments/assets/1ef3a7b5-2fb7-4d01-a4e0-f63e4898c150" />
 
+### Denetim Ekranı
+Kalite kontrol sürecinin ana ekranı. Sol panelde mevcut aşama, kalan süre ve bileşen sayım detayları yer alır. Ortada canlı kamera görüntüsü ve YOLO tespit kutuları, sağ panelde ise son denetim sonuçları anlık olarak görünür.
+<img width="1911" height="1013" alt="Ekran görüntüsü 2026-06-05 092223" src="https://github.com/user-attachments/assets/1f976d0b-006e-484f-b983-cd1bd1243df5" />
 
+### Test Sonuçları
+Denetlenen tüm cihazların geçmişi; tarih, cihaz tipi, seri numarası, PASS/FAIL sonucu ve varsa başarısız olan aşama bilgisiyle birlikte listelenir.
+<img width="1156" height="782" alt="Ekran görüntüsü 2026-06-05 092241" src="https://github.com/user-attachments/assets/854cbb3d-4ec7-4eef-bd71-c1f715a9d075" />
 
+### Ayarlar
+Kamera kaynağı, model ağırlığı, görüntü boyutu, güven eşiği ve bileşen doğrulama modu bu ekrandan ayarlanır. Değişiklikler bir sonraki denetimde geçerli olur.
+<img width="907" height="927" alt="Ekran görüntüsü 2026-06-05 092305" src="https://github.com/user-attachments/assets/62d6576c-4e8e-40b9-8e43-dea236996f57" />
 
 ## Repo icerigi
 
