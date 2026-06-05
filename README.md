@@ -3,7 +3,8 @@
 
 MD-DeviceQC, Mikrodev Bilişim A.Ş. üretim hattından çıkan endüstriyel cihazların görsel kalite kontrolünü otomatikleştiren, YOLOv5 tabanlı gerçek zamanlı bir denetim sistemidir. Sistem; operatörün ürünü kameraya göstermesiyle çalışır ve ön yüz bileşen sayımı, etiket kontrolü ve barkod okuma aşamalarını sırasıyla gerçekleştirerek her cihaz için PASS veya FAIL kararı üretir ve sonucu seri numarasıyla birlikte kayıt altına alır.
 
-[![Sistem Tanıtım Videosu](https://img.shields.io/badge/YouTube-Tanıtım_Videosu-FF0000?style=flat&logo=youtube)](https://www.youtube.com/watch?v=pNHOG5MSDHc)
+**Sistem Tanıtım Videosu:**  
+https://www.youtube.com/watch?v=pNHOG5MSDHc
 
 ## Neden Geliştirildi?
 
