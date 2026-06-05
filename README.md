@@ -38,6 +38,7 @@ Bu proje aşağıdaki açılardan özgün bir çalışmadır:
   - ⚙️ **Kolay konfigürasyon** — Yeni cihaz tipi eklemek için sadece YAML dosyası güncellenir, kod değişikliği gerekmez.
     
 ## Sistem Önizlemesi
+> 🎥 Sistem tanıtım ve operatör eğitim videosu için → `qc_system_training_intro.mp4`
 ### Main Menu
 Uygulamanın açılış ekranı. Start Inspection butonu ile kalite kontrol süreci başlatılır, Test Results ile daha önce denetlenen cihazların sonuçları görüntülenir, Settings ile kamera ve model ayarları yapılandırılır.
 
@@ -45,10 +46,12 @@ Uygulamanın açılış ekranı. Start Inspection butonu ile kalite kontrol sür
 
 ### Start Inspection
 Kalite kontrol sürecinin ana ekranı. Sol panelde mevcut aşama, kalan süre ve bileşen sayım detayları yer alır. Ortada canlı kamera görüntüsü ve YOLO tespit kutuları, sağ panelde ise son denetim sonuçları anlık olarak görünür.
+
 <img width="1911" height="1013" alt="Ekran görüntüsü 2026-06-05 092223" src="https://github.com/user-attachments/assets/b0638a9b-cece-421b-a15d-c2028bab34d4" />
 
 ### Test Results
 Denetlenen tüm cihazların geçmişi; tarih, cihaz tipi, seri numarası, PASS/FAIL sonucu ve varsa başarısız olan aşama bilgisiyle birlikte listelenir.
+
 <img width="1156" height="782" alt="Ekran görüntüsü 2026-06-05 092241" src="https://github.com/user-attachments/assets/854cbb3d-4ec7-4eef-bd71-c1f715a9d075" />
 
 ### Settings
@@ -62,7 +65,7 @@ Sistem üç ayar sekmesinden oluşur. Camera sekmesinde kamera kaynağı ve FPS 
 </table>
 
 ## Repo İçeriği
-'''
+```
 MD-DeviceQC/
 ├── yolov5/
 │   ├── qc_launcher.py            # Uygulamanın başlatıldığı ana dosya (PySide6 arayüz)
@@ -83,9 +86,10 @@ MD-DeviceQC/
 │       └── Jetson Nano/          # Jetson Nano deploy denemeleri
 ├── best.pt                       # Birincil eğitilmiş model ağırlığı
 ├── best1.pt                      # İkincil model ağırlığı
+├── qc_system_training_intro.mp4  # Sistem tanıtım ve operatör eğitim videosu
 ├── README.md
 └── .gitignore
-'''
+```
 > **NOT:** Ana sistem YOLOv5 üzerine geliştirilmiştir. `scripts/` klasöründeki YOLOv8 ve Jetson Nano denemeleri karşılaştırma ve geliştirme sürecinin bir parçasıdır. Sistem önce Jetson Nano üzerinde test edilmiş, ardından YOLOv5 ve YOLOv8 karşılaştırmalı olarak eğitilmiştir. Performans ve saha koşulları değerlendirilerek nihai sistem YOLOv5 üzerinde geliştirilmiştir. Detaylı karşılaştırma için → [yolov5/README.md](yolov5/README.md)
 
 ## Teknolojiler
