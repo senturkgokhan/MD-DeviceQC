@@ -1,6 +1,6 @@
 # Scripts — Geliştirme Süreci ve Denemeler
 
-Bu klasör, MD-DeviceQC sisteminin geliştirme sürecindeki deneme kodlarını ve yardımcı scriptleri içermektedir.
+Bu klasördeki dosyalar geliştirme ve araştırma sürecinde kullanılmıştır. Nihai sistem doğrudan qc_engine.py ve qc_launcher.py üzerinden çalışmaktadır.
 ---
 
 ## 1- Jetson Nano Denemeleri
