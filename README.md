@@ -81,12 +81,14 @@ MD-DeviceQC/
 │   │   └── app_settings.json     # Kullanıcı ayarları
 │   ├── utils/
 │   │   └── db.py                 # SQLite veritabanı işlemleri
-│   └── scripts/
-│       ├── Camera.py             # Dataset görüntü toplama scripti
-│       ├── OCR3.py               # Klasik CV ile etiket kutusu tespiti
-│       ├── Colab_Training_Code_Yolov5.ipynb  # Google Colab eğitim kodu
-│       ├── yolov8/               # YOLOv8 karşılaştırma denemeleri
-│       └── Jetson Nano/          # Jetson Nano deploy denemeleri
+│   ├── scripts/
+│   │   ├── Camera.py             # Dataset görüntü toplama scripti
+│   │   ├── OCR3.py               # Klasik CV ile etiket kutusu tespiti
+│   │   ├── Colab_Training_Code_Yolov5.ipynb  # Google Colab eğitim kodu
+│   │   ├── yolov8/               # YOLOv8 karşılaştırma denemeleri
+│   │   └── Jetson Nano/          # Jetson Nano deploy denemeleri
+│   └── Quality_Control.v3i.yolov5pytorch.zip  # Roboflow'dan export edilen eğitim dataseti (YOLOv5 formatı)
+│
 ├── best.pt                       # Birincil eğitilmiş model ağırlığı
 ├── best1.pt                      # İkincil model ağırlığı
 ├── qc_system_training_intro.mp4  # Sistem tanıtım ve operatör eğitim videosu
