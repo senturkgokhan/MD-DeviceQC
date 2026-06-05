@@ -38,7 +38,10 @@ Bu proje aşağıdaki açılardan özgün bir çalışmadır:
   - ⚙️ **Kolay konfigürasyon** — Yeni cihaz tipi eklemek için sadece YAML dosyası güncellenir, kod değişikliği gerekmez.
     
 ## Sistem Önizlemesi
- | Ana Menü | 
+
+ | 
+ Ana Menü 
+ | 
 <img width="785" height="833" alt="Ekran görüntüsü 2026-06-05 092314" src="https://github.com/user-attachments/assets/1ef3a7b5-2fb7-4d01-a4e0-f63e4898c150" />
 
 
