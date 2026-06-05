@@ -1,0 +1,59 @@
+# Cihaz profilleri — model sınıf adları aliases ile eşleşir (büyük/küçük harf duyarsız).
+# Yeni dataset gelince yalnızca aliases listesini güncellemeniz yeterli.
+
+devices:
+  DM100:
+    display_name: "DM100 (MP100)"
+    # Marker sınıfı varsa bile tip yalnızca komponent sayımından seçilir (bilgi amaçlı)
+    device_markers:
+      - DM100
+      - MP100
+      - mp100
+    front_components:
+      ethernet:
+        count: 1
+        aliases: [Ethernet, ethernet, ETH]
+      usb_b:
+        count: 1
+        aliases: [usb-b, USB-B, USB_B, usbb]
+      led_group:
+        count: 2
+        aliases: [Led-Group, LED-Group, led-group, Led_Group]
+      klemens_group:
+        count: 2
+        aliases: [Klemens-Group, klemens-group, Klemens_Group]
+      sd_card:
+        count: 1
+        aliases: [SD-Card, SD-Card, sd-card, SDCard, SD_Card]
+    # Garanti + kalite etiketi (YOLO sınıfı veya etiket yüzeyi taramasında)
+    label_components:
+      warranty:
+        count: 1
+        aliases: [Warranty, warranty, Garanti, garanti]
+      quality_control:
+        count: 1
+        aliases: [Quality-Control, Quality Control, quality-control, Kalite-Kontrol]
+
+  XIO110:
+    display_name: "XIO110"
+    device_markers:
+      - XIO110
+      - XIO-110
+      - xio110
+    front_components:
+      id_switch:
+        count: 1
+        aliases: [ID-Switch, ID_Switch, id-switch, ID switch, Id-Switch]
+      klemens_group:
+        count: 3
+        aliases: [Klemens-Group, klemens-group, Klemens_Group]
+      led_group:
+        count: 1
+        aliases: [Led-Group, LED-Group, led-group, Led_Group]
+    label_components:
+      warranty:
+        count: 1
+        aliases: [Warranty, warranty, Garanti, garanti]
+      quality_control:
+        count: 1
+        aliases: [Quality-Control, Quality Control, quality-control, Kalite-Kontrol]
