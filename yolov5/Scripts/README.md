@@ -73,8 +73,3 @@ Roboflow'dan export edilen dataset ile YOLOv5s modelini Google Colab GPU ortamı
 - Eğitim grafiklerinin görselleştirilmesi
 - En iyi modelin (best.pt) kaydedilmesi
 
-**Sonuçlar:**
-
-| mAP@0.5 | mAP@0.5:0.95 | Precision | Recall |
-|---------|--------------|-----------|--------|
-| 0.992 | 0.944 | 0.967 | 0.978 |
