@@ -2,7 +2,7 @@
 ### Kalite Kontrol Motoru ve Sistem Mimarisi
 
 Bu dokümantasyon, MD-DeviceQC sisteminin teknik detaylarını, kurulum adımlarını ve konfigürasyon seçeneklerini içermektedir.
-Sistem; YOLOv5s tabanlı nesne tespiti, üç aşamalı denetim akışı ve PySide6 arayüzünden oluşmaktadır.
+Sistem; YOLOv5s tabanlı nesne tespiti, dört aşamalı denetim akışı ve PySide6 arayüzünden oluşmaktadır.
 
 ## Sistem Mimarisi
 Sistem iki ana katmandan oluşmaktadır:
@@ -53,16 +53,19 @@ sıfırlanır ve yeni ürün için FRONT aşamasına döner.
 
 ### Dataset
 
-Tüm eğitim verisi Mikrodev üretim ortamında, gerçek DM100 ve XIO110 cihazları üzerinde bizzat toplanmıştır. Görseller laptop kamerası ve IMX219 kamera kullanılarak farklı açı ve ışık koşullarında elde edilmiştir.
+Tüm eğitim verisi Mikrodev üretim ortamında, gerçek DM100 ve XIO110 cihazları üzerinde bizzat toplanmıştır. Görseller laptop kamerası ve IMX219 kamera kullanılarak farklı açı ve ışık koşullarında elde edilmiştir. Toplanan 1.682 ham görüntü %70/%20/%10 oranında eğitim, doğrulama ve test kümelerine ayrılmıştır. Augmentation yalnızca eğitim kümesine uygulanarak eğitim seti yaklaşık üç katına çıkarılmıştır.
 
-| | Görüntü |
-|--|---------|
-| Ham toplam | 1.682 |
-| Train (aug. öncesi) | 1.190 |
-| Train (aug. sonrası) | 3.570 |
-| Validation | 334 |
-| Test | 158 |
-| **Toplam** | **4.062** |
+```
+Ham Görüntü Sayısı : 1.682
+
+Train      : 1.190  (%70)
+Validation :   334  (%20)
+Test       :   158  (%10)
+
+Augmentation Sonrası Train : 3.570
+
+Toplam Eğitim Görüntüsü   : 4.062
+```
 
 ### Etiketleme
 Tüm görseller Roboflow platformu üzerinde 10 sınıf için her bileşen tek tek, bizzat etiketlenmiştir.
@@ -89,14 +92,13 @@ Uygulanan yöntemler: Rotation, Hue, Saturation, Brightness, Exposure, Blur, Noi
 
 ### Model Eğitimi ve Karşılaştırma
 
-Sistem geliştirilirken YOLOv8s ve YOLOv5s modelleri farklı 
-parametrelerle karşılaştırmalı olarak eğitilmiştir.
+Sistem geliştirilirken YOLOv8s ve YOLOv5s modelleri farklı parametrelerle karşılaştırmalı olarak eğitilmiştir. Tüm eğitimler Google Colab üzerinde gerçekleştirilmiştir.
 
 | Model | Epoch | Görüntü Boyutu | mAP@0.5 | mAP@0.5:0.95 | Precision | Recall |
 |-------|-------|----------------|---------|--------------|-----------|--------|
-| YOLOv8s | 150 | 640 | ~0.987 | ~0.835 | ~0.970 | ~0.980 |
-| YOLOv8s | 200 | 640 | ~0.987 | ~0.820 | ~0.970 | ~0.980 |
-| YOLOv5s | 150 | 832 | ~0.980 | ~0.800 | ~0.980 | ~0.980 |
+| YOLOv8s | 150 | 640 | 0.987 | 0.835 | 0.970 | 0.980 |
+| YOLOv8s | 200 | 640 | 0.987 | 0.820 | 0.970 | 0.980 |
+| **YOLOv5s** | **150** | **832** | **0.992** | **0.944** | **0.967** | **0.978** |
 
 **Eğitim Grafikleri:**
 
@@ -111,10 +113,13 @@ parametrelerle karşılaştırmalı olarak eğitilmiştir.
 
 ### Neden YOLOv5s Seçildi?
 
-- YOLOv8s metrik olarak biraz daha iyi çıkmıştır ancak fark üretim ortamında anlamlı bir fark yaratmamaktadır.
-- YOLOv5s eğitim eğrisi çok daha stabil seyretmiştir.
-- Sahada PC ve test laptobu üzerinde YOLOv5s daha akıcı çalışmaktadır.
-- Endüstriyel kullanımda doğruluk ve gerçek zamanlı performans dengesi kritik öneme sahiptir.
+YOLOv8s bazı deneylerde daha yüksek metrikler üretmesine rağmen,sistem geliştirme sürecinde YOLOv5s aşağıdaki avantajları sağlamıştır:
+- **Daha kararlı eğitim eğrileri** — YOLOv5s eğitim süreci boyunca çok daha stabil bir grafik sergilemiştir
+- **Daha düşük inference gecikmesi** — Sahada PC ve test laptobu üzerinde daha akıcı çalışmaktadır
+- **Jetson Nano uyumluluğu** — Deploy sürecinde YOLOv5s daha kolay entegre edilebilmiştir
+- **Mevcut sistem mimarisiyle yüksek uyumluluk** — YOLOv5 utils ve model yapısı sisteme doğrudan entegre edilmiştir
+- **Üretim ortamında yeterli doğruluk** — mAP@0.5 0.992, Precision 0.967, Recall 0.978 değerleriyle endüstriyel kullanım için yeterli doğruluk seviyesi sağlanmıştır
+Bu nedenle nihai sistem modeli olarak YOLOv5s tercih edilmiştir.
 
 
 
