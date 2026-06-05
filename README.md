@@ -62,7 +62,7 @@ Sistem üç ayar sekmesinden oluşur. Camera sekmesinde kamera kaynağı ve FPS 
 </table>
 
 ## Repo İçeriği
-
+'''
 MD-DeviceQC/
 ├── yolov5/
 │   ├── qc_launcher.py            # Uygulamanın başlatıldığı ana dosya (PySide6 arayüz)
@@ -85,7 +85,7 @@ MD-DeviceQC/
 ├── best1.pt                      # İkincil model ağırlığı
 ├── README.md
 └── .gitignore
-
+'''
 > **NOT:** Ana sistem YOLOv5 üzerine geliştirilmiştir. `scripts/` klasöründeki YOLOv8 ve Jetson Nano denemeleri karşılaştırma ve geliştirme sürecinin bir parçasıdır. Sistem önce Jetson Nano üzerinde test edilmiş, ardından YOLOv5 ve YOLOv8 karşılaştırmalı olarak eğitilmiştir. Performans ve saha koşulları değerlendirilerek nihai sistem YOLOv5 üzerinde geliştirilmiştir. Detaylı karşılaştırma için → [yolov5/README.md](yolov5/README.md)
 
 ## Teknolojiler
@@ -131,5 +131,4 @@ pip install -r requirements.txt
 # 4. Uygulamayı başlat
 python qc_launcher.py
 ```
-> Detaylı teknik dokümantasyon ve kurulum için → [yolov5/README.md](yolov5/README.md)
 
