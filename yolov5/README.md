@@ -22,7 +22,6 @@ qc_launcher.py  (PySide6 — Ana Arayüz)
                 └── pyzbar barkod okuyucu
 ```
 ## Denetim Akışı
-
 Sistem dört aşamalı bir durum makinesi (state machine) olarak çalışır. Her aşamanın belirli bir süre sınırı vardır. Süre dolduğunda sistem otomatik olarak bir sonraki adıma geçer.
 
 ### FRONT — Ön Yüz Kontrolü (20 sn)
@@ -32,7 +31,7 @@ Operatör cihazın ön yüzünü kameraya gösterir. YOLO modeli bileşenleri te
 Operatör cihazın etiketli yüzeyini kameraya gösterir. Sistem, Garanti ve Kalite Kontrol etiketlerinin varlığını kontrol eder. Her iki etiket de tespit edildiğinde 8 ardışık kare boyunca tutarlı sonuç alınırsa sistem otomatik olarak BARCODE aşamasına geçer.
 
 ### BARCODE — Barkod Okuma (15 sn)
-Operatör cihazın barkodunu kameraya gösterir. pyzbar kütüphanesiile seri numarası okunur. Seri numarası başarıyla okunduğundasistem otomatik olarak RESULT aşamasına geçer.
+Operatör cihazın barkodunu kameraya gösterir. pyzbar kütüphanesiile seri numarası okunur. Seri numarası başarıyla okunduğunda sistem otomatik olarak RESULT aşamasına geçer.
 
 ### RESULT — Sonuç
 Tüm aşamalar tamamlandığında sistem PASS veya FAIL kararını ekranda gösterir ve sonucu seri numarasıyla birlikte SQLite veritabanına kaydeder. 2 saniye sonra sistem otomatik olarak
@@ -135,7 +134,6 @@ Sistem geliştirilirken YOLOv8s ve YOLOv5s modelleri farklı parametrelerle kar�
 <img width="2400" height="1200" alt="results" src="https://github.com/user-attachments/assets/ab882498-f498-42a2-8667-53aecf644888" />
 
 ### Neden YOLOv5s Seçildi?
-
 YOLOv8s bazı deneylerde daha yüksek metrikler üretmesine rağmen,sistem geliştirme sürecinde YOLOv5s aşağıdaki avantajları sağlamıştır:
 - **Daha kararlı eğitim eğrileri** — YOLOv5s eğitim süreci boyunca çok daha stabil bir grafik sergilemiştir
 - **Daha düşük inference gecikmesi** — Sahada PC ve test laptobu üzerinde daha akıcı çalışmaktadır
@@ -145,7 +143,6 @@ YOLOv8s bazı deneylerde daha yüksek metrikler üretmesine rağmen,sistem geli�
 Bu nedenle nihai sistem modeli olarak YOLOv5s tercih edilmiştir.
 
 ## Sınırlamalar
-
 - Sistem yalnızca DM100 ve XIO110 cihazlarını desteklemektedir. Yeni cihaz tipi eklemek için device_profiles.yaml güncellenmeli ve model yeniden eğitilmelidir.
 - Kamera görüş alanı dışında kalan bileşenler doğrulanamaz. Operatörün cihazı doğru açıyla göstermesi gerekmektedir.
 - Barkodun okunabilmesi için yeterli görüntü kalitesi ve mesafe gereklidir. Aşırı yakın veya uzak açılar okuma başarısını düşürebilir.
