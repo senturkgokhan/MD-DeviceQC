@@ -38,6 +38,29 @@ Operatör cihazın barkodunu kameraya gösterir. pyzbar kütüphanesiile seri nu
 Tüm aşamalar tamamlandığında sistem PASS veya FAIL kararını ekranda gösterir ve sonucu seri numarasıyla birlikte SQLite veritabanına kaydeder. 2 saniye sonra sistem otomatik olarak
 sıfırlanır ve yeni ürün için FRONT aşamasına döner.
 
+### Cihaz Tanıma Mekanizması
+
+DM100 ve XIO110 cihazları ön yüz bileşen sayıları kullanılarak otomatik olarak tanımlanır. Sistem her kare için tespit edilen bileşen sayılarını device_profiles.yaml içindeki referans değerleriyle karşılaştırarak bir uyum skoru üretir.
+
+**Referans Bileşen Sayıları:**
+
+| Bileşen | DM100 | XIO110 |
+|---------|-------|--------|
+| Ethernet | 1 | — |
+| USB-B | 1 | — |
+| SD-Card | 1 | — |
+| Klemens-Group | 2 | 3 |
+| Led-Group | 2 | 1 |
+| ID-Switch | — | 1 |
+
+**Tanıma Süreci:**
+
+- Her kare için her profile karşı bir uyum skoru (0-1) hesaplanır
+- En yüksek skorlu profil aday olarak seçilir
+- Minimum skor 0.88, iki aday arasındaki minimum fark 0.12 olmalıdır
+- 12 ardışık kare boyunca aynı sonuç alındığında tanıma kesinleşir ve sistem otomatik olarak LABEL aşamasına geçer
+- Operatör istediği zaman 1/2 tuşlarıyla cihaz tipini manuel olarak da belirleyebilir
+
 ### FAIL Senaryoları
 
 | Senaryo | Sistem Davranışı |
@@ -120,6 +143,15 @@ YOLOv8s bazı deneylerde daha yüksek metrikler üretmesine rağmen,sistem geli�
 - **Mevcut sistem mimarisiyle yüksek uyumluluk** — YOLOv5 utils ve model yapısı sisteme doğrudan entegre edilmiştir
 - **Üretim ortamında yeterli doğruluk** — mAP@0.5 0.992, Precision 0.967, Recall 0.978 değerleriyle endüstriyel kullanım için yeterli doğruluk seviyesi sağlanmıştır
 Bu nedenle nihai sistem modeli olarak YOLOv5s tercih edilmiştir.
+
+## Sınırlamalar
+
+- Sistem yalnızca DM100 ve XIO110 cihazlarını desteklemektedir. Yeni cihaz tipi eklemek için device_profiles.yaml güncellenmeli ve model yeniden eğitilmelidir.
+- Kamera görüş alanı dışında kalan bileşenler doğrulanamaz. Operatörün cihazı doğru açıyla göstermesi gerekmektedir.
+- Barkodun okunabilmesi için yeterli görüntü kalitesi ve mesafe gereklidir. Aşırı yakın veya uzak açılar okuma başarısını düşürebilir.
+- Aşırı yansıma ve hareket bulanıklığı tespit başarısını olumsuz etkileyebilir.
+- Sistem şu an yalnızca Windows üzerinde test edilmiştir. Linux desteği için win32_helper.py düzenlemesi gerekebilir.
+  
 
 
 
