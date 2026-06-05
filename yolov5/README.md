@@ -31,7 +31,7 @@ Operatör cihazın ön yüzünü kameraya gösterir. YOLO modeli bileşenleri te
 Operatör cihazın etiketli yüzeyini kameraya gösterir. Sistem, Garanti ve Kalite Kontrol etiketlerinin varlığını kontrol eder. Her iki etiket de tespit edildiğinde 8 ardışık kare boyunca tutarlı sonuç alınırsa sistem otomatik olarak BARCODE aşamasına geçer.
 
 ### BARCODE — Barkod Okuma (15 sn)
-Operatör cihazın barkodunu kameraya gösterir. pyzbar kütüphanesiile seri numarası okunur. Seri numarası başarıyla okunduğunda sistem otomatik olarak RESULT aşamasına geçer.
+Operatör cihazın barkodunu kameraya gösterir. pyzbar kütüphanesi ile seri numarası okunur. Seri numarası başarıyla okunduğunda sistem otomatik olarak RESULT aşamasına geçer.
 
 ### RESULT — Sonuç
 Tüm aşamalar tamamlandığında sistem PASS veya FAIL kararını ekranda gösterir ve sonucu seri numarasıyla birlikte SQLite veritabanına kaydeder. 2 saniye sonra sistem otomatik olarak
@@ -114,7 +114,7 @@ Uygulanan yöntemler: Rotation, Hue, Saturation, Brightness, Exposure, Blur, Noi
 
 ### Model Eğitimi ve Karşılaştırma
 
-Sistem geliştirilirken YOLOv8s ve YOLOv5s modelleri farklı parametrelerle karşılaştırmalı olarak eğitilmiştir. Tüm eğitimler Google Colab üzerinde gerçekleştirilmiştir.
+YOLOv8s ve YOLOv5s benzer doğruluk seviyeleri elde etmiştir. Ancak YOLOv5s eğitim kararlılığı, sistem entegrasyonu ve gerçek zamanlı performans açısından daha uygun bulunmuştur.
 
 | Model | Epoch | Görüntü Boyutu | mAP@0.5 | mAP@0.5:0.95 | Precision | Recall |
 |-------|-------|----------------|---------|--------------|-----------|--------|
@@ -148,6 +148,13 @@ Bu nedenle nihai sistem modeli olarak YOLOv5s tercih edilmiştir.
 - Barkodun okunabilmesi için yeterli görüntü kalitesi ve mesafe gereklidir. Aşırı yakın veya uzak açılar okuma başarısını düşürebilir.
 - Aşırı yansıma ve hareket bulanıklığı tespit başarısını olumsuz etkileyebilir.
 - Sistem şu an yalnızca Windows üzerinde test edilmiştir. Linux desteği için win32_helper.py düzenlemesi gerekebilir.
+
+## Sonuç
+
+MD-DeviceQC sistemi, DM100 ve XIO110 endüstriyel cihazlarının kalite kontrol süreçlerini otomatikleştirmek amacıyla geliştirilmiştir.
+Sistem; cihaz tanıma, komponent doğrulama, etiket kontrolü ve barkod okuma işlemlerini gerçek zamanlı olarak gerçekleştirerek PASS/FAIL kararı üretmektedir.
+Gerçek üretim ortamında toplanan 4062 görüntüden oluşan veri kümesi üzerinde eğitilen YOLOv5s modeli ile mAP@0.5 değerinde 0.992 başarı elde edilmiştir.
+Elde edilen sonuçlar sistemin küçük ve orta ölçekli endüstriyel üretim hatlarında uygulanabilir olduğunu göstermektedir.
   
 
 
