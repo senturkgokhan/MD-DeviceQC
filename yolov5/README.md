@@ -75,7 +75,7 @@ DM100 ve XIO110 cihazları ön yüz bileşen sayıları kullanılarak otomatik o
 
 ### Dataset
 
-Tüm eğitim verisi Mikrodev üretim ortamında, gerçek DM100 ve XIO110 cihazları üzerinde bizzat toplanmıştır. Görseller laptop kamerası ve IMX219 kamera kullanılarak farklı açı ve ışık koşullarında elde edilmiştir. Toplanan 1.682 ham görüntü %70/%20/%10 oranında eğitim, doğrulama ve test kümelerine ayrılmıştır. Augmentation yalnızca eğitim kümesine uygulanarak eğitim seti yaklaşık üç katına çıkarılmıştır.
+Tüm eğitim verisi Mikrodev üretim ortamında, gerçek DM100 ve XIO110 cihazları üzerinde toplanmıştır. Görseller laptop kamerası ve IMX219 kamera kullanılarak farklı açı ve ışık koşullarında elde edilmiştir. Toplanan 1.682 ham görüntü %70/%20/%10 oranında eğitim, doğrulama ve test kümelerine ayrılmıştır. Augmentation yalnızca eğitim kümesine uygulanarak eğitim seti yaklaşık üç katına çıkarılmıştır.
 
 ```
 Ham Görüntü Sayısı : 1.682
@@ -90,7 +90,7 @@ Toplam Eğitim Görüntüsü   : 4.062
 ```
 
 ### Etiketleme
-Tüm görseller Roboflow platformu üzerinde 10 sınıf için her bileşen tek tek, bizzat etiketlenmiştir.
+Tüm görseller Roboflow platformu üzerinde 10 sınıf için her bileşen tek tek manuel olarak etiketlenmiştir.
 
 | Sınıf | Açıklama |
 |-------|----------|
@@ -114,13 +114,15 @@ Uygulanan yöntemler: Rotation, Hue, Saturation, Brightness, Exposure, Blur, Noi
 
 ### Model Eğitimi ve Karşılaştırma
 
-YOLOv8s ve YOLOv5s benzer doğruluk seviyeleri elde etmiştir. Ancak YOLOv5s eğitim kararlılığı, sistem entegrasyonu ve gerçek zamanlı performans açısından daha uygun bulunmuştur.
+YOLOv5s ve YOLOv8s modelleri farklı eğitim parametreleri ile karşılaştırmalı olarak eğitilmiş ve değerlendirilmiştir. Karşılaştırma sürecinde yalnızca doğruluk metrikleri değil, eğitim kararlılığı, entegrasyon kolaylığı ve gerçek zamanlı çalışma performansı da dikkate alınmıştır.
 
 | Model | Epoch | Görüntü Boyutu | mAP@0.5 | mAP@0.5:0.95 | Precision | Recall |
 |-------|-------|----------------|---------|--------------|-----------|--------|
-| YOLOv8s | 150 | 640 | 0.987 | 0.835 | 0.970 | 0.980 |
-| YOLOv8s | 200 | 640 | 0.987 | 0.820 | 0.970 | 0.980 |
-| **YOLOv5s** | **150** | **832** | **0.992** | **0.944** | **0.967** | **0.978** |
+| YOLOv8s | 150 | 640 | 0.987 | 0.835 | 0.974 | 0.982 |
+| YOLOv8s | 200 | 640 | 0.980 | 0.833 | 0.973 | 0.983 |
+| **YOLOv5s** | **129 (Early Stop)** | **832** | **0.985** | **0.825** | **0.980** | **0.985** |
+
+Sonuçlar incelendiğinde YOLOv8s modelinin mAP@0.5:0.95 metriğinde küçük bir avantaj sağladığı görülmektedir. Ancak 150 epoch sonrasında ek eğitim süresi performansa anlamlı bir katkı sağlamamış, hatta bazı metriklerde hafif düşüş gözlenmiştir. YOLOv5s modeli ise biraz daha düşük mAP@0.5:0.95 değerine sahip olmasına rağmen eğitim süreci boyunca daha kararlı bir öğrenme davranışı göstermiştir. Validation kayıplarında belirgin bir bozulma gözlenmemiş, precision ve recall değerleri yüksek seviyelerde korunmuştur. Bu nedenle nihai model seçimi yapılırken yalnızca doğruluk metrikleri değil, sistem entegrasyonu, bakım kolaylığı ve gerçek zamanlı çalışma performansı da değerlendirilmiştir.
 
 **Eğitim Grafikleri:**
 
@@ -137,10 +139,10 @@ YOLOv8s ve YOLOv5s benzer doğruluk seviyeleri elde etmiştir. Ancak YOLOv5s eğ
 YOLOv8s bazı deneylerde daha yüksek metrikler üretmesine rağmen,sistem geliştirme sürecinde YOLOv5s aşağıdaki avantajları sağlamıştır:
 - **Daha kararlı eğitim eğrileri** — YOLOv5s eğitim süreci boyunca çok daha stabil bir grafik sergilemiştir
 - **Daha düşük inference gecikmesi** — Sahada PC ve test laptobu üzerinde daha akıcı çalışmaktadır
-- **Jetson Nano uyumluluğu** — Deploy sürecinde YOLOv5s daha kolay entegre edilebilmiştir
+- **Jetson Nano uyumluluğu** — Jetson Nano üzerinde denenen deploy sürecinde YOLOv5s mimarisi daha az ek uyarlama gerektirmiştir.
 - **Mevcut sistem mimarisiyle yüksek uyumluluk** — YOLOv5 utils ve model yapısı sisteme doğrudan entegre edilmiştir
-- **Üretim ortamında yeterli doğruluk** — mAP@0.5 0.992, Precision 0.967, Recall 0.978 değerleriyle endüstriyel kullanım için yeterli doğruluk seviyesi sağlanmıştır
-Bu nedenle nihai sistem modeli olarak YOLOv5s tercih edilmiştir.
+- **Üretim ortamında yeterli doğruluk** — mAP@0.5 0.985, Precision 0.980, Recall 0.985 değerleriyle endüstriyel kullanım için yeterli doğruluk seviyesi sağlanmıştır
+Değerlendirme sürecinde YOLOv8s ile elde edilen metrikler dikkate alınmış; ancak gerçek zamanlı çalışma performansı, entegrasyon kolaylığı ve eğitim kararlılığı birlikte göz önünde bulundurulduğunda nihai çözümde YOLOv5s tercih edilmiştir.
 
 ## Sınırlamalar
 - Sistem yalnızca DM100 ve XIO110 cihazlarını desteklemektedir. Yeni cihaz tipi eklemek için device_profiles.yaml güncellenmeli ve model yeniden eğitilmelidir.
@@ -150,12 +152,9 @@ Bu nedenle nihai sistem modeli olarak YOLOv5s tercih edilmiştir.
 - Sistem şu an yalnızca Windows üzerinde test edilmiştir. Linux desteği için win32_helper.py düzenlemesi gerekebilir.
 
 ## Sonuç
-
-MD-DeviceQC sistemi, DM100 ve XIO110 endüstriyel cihazlarının kalite kontrol süreçlerini otomatikleştirmek amacıyla geliştirilmiştir.
-Sistem; cihaz tanıma, komponent doğrulama, etiket kontrolü ve barkod okuma işlemlerini gerçek zamanlı olarak gerçekleştirerek PASS/FAIL kararı üretmektedir.
-Gerçek üretim ortamında toplanan 4062 görüntüden oluşan veri kümesi üzerinde eğitilen YOLOv5s modeli ile mAP@0.5 değerinde 0.992 başarı elde edilmiştir.
-Elde edilen sonuçlar sistemin küçük ve orta ölçekli endüstriyel üretim hatlarında uygulanabilir olduğunu göstermektedir.
-  
+MD-DeviceQC sistemi, Mikrodev Bilişim A.Ş. üretim hattında DM100 ve XIO110 endüstriyel cihazlarının kalite kontrol süreçlerini otomatikleştirmek amacıyla geliştirilmiş ve üretim hattı senaryoları üzerinde test edilmiştir. Sistem; cihaz tanıma, bileşen doğrulama, etiket kontrolü ve barkod okuma işlemlerini gerçek zamanlı olarak gerçekleştirerek her cihaz için PASS veya FAIL kararı üretmekte ve sonucu seri numarasıyla birlikte kayıt altına almaktadır.
+Gerçek üretim ortamında toplanan ve manuel olarak etiketlenen 4.062 görüntüden oluşan özgün veri kümesi üzerinde eğitilen YOLOv5s modeli ile mAP@0.5 değerinde 0.985, Precision değerinde 0.980 ve Recall değerinde 0.985 başarısı elde edilmiştir. Eğitim sürecinde belirgin bir aşırı öğrenme (overfitting) gözlenmemiş, eğitim ve doğrulama metrikleri benzer eğilimler göstermiştir.
+Elde edilen sonuçlar sistemin küçük ve orta ölçekli endüstriyel üretim hatlarında uygulanabilir bir çözüm olduğunu göstermektedir. Gelecek çalışmalar kapsamında farklı cihaz modellerinin sisteme entegre edilmesi ve daha güçlü edge cihazlar üzerinde performans optimizasyonlarının gerçekleştirilmesi planlanmaktadır.
 
 
 
