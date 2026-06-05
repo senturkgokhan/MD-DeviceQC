@@ -1,3 +1,8 @@
+## Dokümantasyon
+- Bu dosya → proje özeti ve kurulum
+- [yolov5/README.md](yolov5/README.md) → teknik mimari ve model/dataset
+- [yolov5/Scripts/README.md](yolov5/Scripts/README.md) → geliştirme denemeleri (Jetson, YOLOv8, Colab)
+
 # MD-DeviceQC 
 ### YOLOv5 Tabanlı Endüstriyel Cihaz Kalite Kontrol Sistemi
 
@@ -81,7 +86,7 @@ MD-DeviceQC/
 │   │   └── app_settings.json     # Kullanıcı ayarları
 │   ├── utils/
 │   │   └── db.py                 # SQLite veritabanı işlemleri
-│   ├── scripts/
+│   ├── Scripts/
 │   │   ├── Camera.py             # Dataset görüntü toplama scripti
 │   │   ├── OCR3.py               # Klasik CV ile etiket kutusu tespiti
 │   │   ├── Colab_Training_Code_Yolov5.ipynb  # Google Colab eğitim kodu
@@ -129,7 +134,7 @@ MD-DeviceQC/
 ### Adımlar
 ```bash
 # 1. Repoyu klonla
-git clone https://github.com/KULLANICI_ADI/MD-DeviceQC.git
+git clone https://github.com/senturkgokhan/MD-DeviceQC.git
 cd MD-DeviceQC/yolov5
 
 # 2. Bağımlılıkları kur
