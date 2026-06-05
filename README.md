@@ -38,7 +38,7 @@ Bu proje aşağıdaki açılardan özgün bir çalışmadır:
   -  **Kolay konfigürasyon** — Yeni cihaz tipi eklemek için sadece YAML dosyası güncellenir, kod değişikliği gerekmez.
     
 ## Sistem Önizlemesi
-> 🎥 Sistem tanıtım ve operatör eğitim videosu için → `qc_system_training_intro.mp4`
+>  Sistem tanıtım ve operatör eğitim videosu için → `qc_system_training_intro.mp4`
 ### Main Menu
 Uygulamanın açılış ekranı. Start Inspection butonu ile kalite kontrol süreci başlatılır, Test Results ile daha önce denetlenen cihazların sonuçları görüntülenir, Settings ile kamera ve model ayarları yapılandırılır.
 
@@ -91,7 +91,7 @@ MD-DeviceQC/
 └── .gitignore
 ```
 > **NOT:** Ana sistem YOLOv5 üzerine geliştirilmiştir. `scripts/` klasöründeki YOLOv8 ve Jetson Nano denemeleri karşılaştırma ve geliştirme sürecinin bir parçasıdır. Sistem önce Jetson Nano üzerinde test edilmiş, ardından YOLOv5 ve YOLOv8 karşılaştırmalı olarak eğitilmiştir. Performans ve saha koşulları değerlendirilerek nihai sistem YOLOv5 üzerinde geliştirilmiştir.
-> 📊 Detaylı model karşılaştırması ve eğitim sonuçları için → [yolov5/README.md](yolov5/README.md)
+>  Detaylı model karşılaştırması ve eğitim sonuçları için → [yolov5/README.md](yolov5/README.md)
 
 ## Teknolojiler
 
