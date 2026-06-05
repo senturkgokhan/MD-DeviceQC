@@ -21,7 +21,7 @@ Bu proje aşağıdaki açılardan özgün bir çalışmadır:
 - **Sektöre özel etiketleme:** Endüstriyel RTU/PLC cihazlarına yönelik 10 sınıf ve 4.062 görüntüden oluşan özgün bir dataset oluşturulmuştur.Tüm görseller Roboflow platformu üzerinde her bileşen tek tek, bizzat etiketlenmiştir.
 - **Özgün pipeline:** YOLOv5 + OpenCV + pyzbar + PySide6 bileşenlerinin bu tip endüstriyel cihazlar için entegrasyonu özgün bir yazılım mimarisi ortaya koymaktadır.
 - **Üretime uygun tasarım:** Sistem bileşenleri ve denetim adımları, Mikrodev üretim hattının gerçek koşulları analiz edilerek belirlenmiştir:
-  - Kamera, üretim ortamındaki çekim mesafesi ve görüntü kalitesi kriterleri göz önünde bulundurularak seçilmiştir
+  - Sabit kamera ve kontrollü aydınlatma kullanılarak üretim hattına uygun bir görüntü alma istasyonu tasarlanmıştır.
   - Operatörün cihazı elle tutarak kameraya göstermesi şeklinde çalışan bir denetim akışı tasarlanmıştır
   - Tutarlı görüntü kalitesi için özel bir aydınlatma ortamı oluşturulmuştur
   - Sistem, mevcut üretim akışını bozmadan entegre olacak şekilde tasarlanmıştır
@@ -61,35 +61,75 @@ Sistem üç ayar sekmesinden oluşur. Camera sekmesinde kamera kaynağı ve FPS 
   </tr>
 </table>
 
+## Repo İçeriği
 
+MD-DeviceQC/
+├── yolov5/
+│   ├── qc_launcher.py            # Uygulamanın başlatıldığı ana dosya (PySide6 arayüz)
+│   ├── qc_engine.py              # Kalite kontrol motoru (YOLO tespit + denetim akışı)
+│   ├── inspection_profiles.py    # Cihaz profili yükleme ve doğrulama
+│   ├── app_settings.py           # Kullanıcı ayarları yönetimi
+│   ├── win32_helper.py           # Windows pencere yardımcıları
+│   ├── config/
+│   │   ├── device_profiles.yaml  # DM100 / XIO110 referans bileşen sayıları
+│   │   └── app_settings.json     # Kullanıcı ayarları
+│   ├── utils/
+│   │   └── db.py                 # SQLite veritabanı işlemleri
+│   └── scripts/
+│       ├── Camera.py             # Dataset görüntü toplama scripti
+│       ├── OCR3.py               # Klasik CV ile etiket kutusu tespiti
+│       ├── Colab_Training_Code_Yolov5.ipynb  # Google Colab eğitim kodu
+│       ├── yolov8/               # YOLOv8 karşılaştırma denemeleri
+│       └── Jetson Nano/          # Jetson Nano deploy denemeleri
+├── best.pt                       # Birincil eğitilmiş model ağırlığı
+├── best1.pt                      # İkincil model ağırlığı
+├── README.md
+└── .gitignore
 
+> **NOT:** Ana sistem YOLOv5 üzerine geliştirilmiştir. `scripts/` klasöründeki YOLOv8 ve Jetson Nano denemeleri karşılaştırma ve geliştirme sürecinin bir parçasıdır. Sistem önce Jetson Nano üzerinde test edilmiş, ardından YOLOv5 ve YOLOv8 karşılaştırmalı olarak eğitilmiştir. Performans ve saha koşulları değerlendirilerek nihai sistem YOLOv5 üzerinde geliştirilmiştir. Detaylı karşılaştırma için → [yolov5/README.md](yolov5/README.md)
 
+## Teknolojiler
 
+![Python](https://img.shields.io/badge/Python-3.9+-3776AB?style=flat&logo=python&logoColor=white)
+![YOLOv5](https://img.shields.io/badge/YOLOv5-PyTorch-EE4C2C?style=flat&logo=pytorch&logoColor=white)
+![OpenCV](https://img.shields.io/badge/OpenCV-4.5+-5C3EE8?style=flat&logo=opencv&logoColor=white)
+![PySide6](https://img.shields.io/badge/PySide6-Qt6-41CD52?style=flat&logo=qt&logoColor=white)
+![SQLite](https://img.shields.io/badge/SQLite-003B57?style=flat&logo=sqlite&logoColor=white)
 
+| | |
+|--|--|
+| Nesne Tespiti | YOLOv5s + PyTorch |
+| Nesne Tespiti (Deneme) | YOLOv8s + PyTorch |
+| Görüntü İşleme | OpenCV |
+| Barkod Okuma | pyzbar + ZBar |
+| Arayüz | PySide6 (Qt6) |
+| Veritabanı | SQLite |
+| Etiketleme | Roboflow |
+| Eğitim | Google Colab |
+| Konfigürasyon | YAML + JSON |
 
+## Kurulum ve Çalıştırma
 
+### Gereksinimler
+- Python 3.9+
+- ZBar kütüphanesi (`pyzbar` için)
+  - Windows: [ZBar indirme](https://sourceforge.net/projects/zbar/)
+  - Linux: `sudo apt install libzbar0`
 
-
-
-
-
-
-
-
-## Repo icerigi
-
-| Oge | Aciklama |
-|-----|----------|
-| `yolov5/` | QC uygulamasi (`qc_engine.py`, `qc_launcher.py`, profiller, veritabani araclari) |
-| `best.pt` | Birincil egitilmis model agirligi (~14 MB) |
-| `best1.pt` | Ikincil model agirligi (~22 MB) |
-
-## Calistirma
-
+### Adımlar
 ```bash
-cd yolov5
+# 1. Repoyu klonla
+git clone https://github.com/KULLANICI_ADI/MD-DeviceQC.git
+cd MD-DeviceQC/yolov5
+
+# 2. Bağımlılıkları kur
 pip install -r requirements.txt
+
+# 3. Model ağırlığını yerleştir
+# best.pt dosyasını yolov5/ klasörüne koy
+
+# 4. Uygulamayı başlat
 python qc_launcher.py
 ```
+> Detaylı teknik dokümantasyon ve kurulum için → [yolov5/README.md](yolov5/README.md)
 
-Model dosyalari repo kokundedir; ayarlarda `weights` yolu genelde `../best.pt` olmalidir.
