@@ -3,7 +3,7 @@
 Bu klasör, MD-DeviceQC sisteminin geliştirme sürecindeki deneme kodlarını ve yardımcı scriptleri içermektedir.
 ---
 
-## Jetson Nano Denemeleri
+## 1- Jetson Nano Denemeleri
 Proje başlangıcında sistem, NVIDIA Jetson Nano 4GB üzerinde deploy edilmesi planlanmıştır. Bu amaçla YOLOv5 modeli ve IMX219 kamera Jetson Nano üzerinde test edilmiştir.
 
 **Sonuç:**  
@@ -12,7 +12,7 @@ YOLOv5 modeli ve kamera aynı anda çalıştırıldığında Jetson Nano 4GB üz
 **Gelecek:**  
 Daha yüksek kapasiteli bir edge board (örn. Jetson Orin Nano) ile deploy yapılması planlanmaktadır.
 
-## YOLOv8 Denemeleri
+## 2- YOLOv8 Denemeleri
 
 Sistem geliştirme sürecinde YOLOv5s ile karşılaştırmalı olarak YOLOv8s modeli de aynı dataset üzerinde eğitilmiştir.
 
@@ -26,7 +26,7 @@ Sistem geliştirme sürecinde YOLOv5s ile karşılaştırmalı olarak YOLOv8s mo
 **Sonuç:**  
 YOLOv8s metrik olarak iyi sonuçlar üretmiştir ancak sahada PC ve test laptobu üzerinde YOLOv5s'e kıyasla daha yavaş çalışmıştır. Mevcut sistem mimarisiyle entegrasyonu da daha karmaşık olmuştur. Bu nedenle nihai model olarak YOLOv5s  tercih edilmiştir.
 
-## Camera.py — Dataset Görüntü Toplama
+## 3- Camera.py — Dataset Görüntü Toplama
 Dataset oluşturma sürecinde kullanılan görüntü toplama scriptidir. Kameradan gerçek zamanlı görüntü alarak belirtilen klasöre kaydeder.
 
 **Amaç:**  
@@ -36,7 +36,7 @@ Mikrodev üretim ortamında DM100 ve XIO110 cihazlarının farklı açı, mesafe
 ```bash
 python Camera.py
 ```
-## OCR3.py — Etiket Kutusu Tespiti
+## 4- OCR3.py — Etiket Kutusu Tespiti
 Klasik görüntü işleme yöntemleriyle etiket yüzeyindeki kutuları tespit eden geliştirme scriptidir.
 
 **Amaç:**  
@@ -52,7 +52,7 @@ YOLO modelinin etiket tespitini desteklemek amacıyla OpenCV tabanlı klasik CV 
 **Sistem içindeki yeri:**  
 Bu script, BARCODE aşamasında barkod okunduktan sonra etiket kutusunun varlığını doğrulamak için kullanılmıştır. Geliştirme sürecinde test edilmiş, nihai sistemde `qc_engine.py` içine entegre edilmiştir.
 
-## Colab_Training_Code_Yolov5.ipynb — Model Eğitimi
+## 5- Colab_Training_Code_Yolov5.ipynb — Model Eğitimi
 YOLOv5s modelinin Google Colab üzerinde eğitilmesi için kullanılan Jupyter Notebook dosyasıdır.
 
 **Amaç:**  
