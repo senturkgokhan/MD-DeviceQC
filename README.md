@@ -40,11 +40,11 @@ Bu proje aşağıdaki açılardan özgün bir çalışmadır:
 ## Sistem Önizlemesi
 ### Main Menu
 Uygulamanın açılış ekranı. Start Inspection butonu ile kalite kontrol süreci başlatılır, Test Results ile daha önce denetlenen cihazların sonuçları görüntülenir, Settings ile kamera ve model ayarları yapılandırılır.
-<img width="785" height="833" alt="Ekran görüntüsü 2026-06-05 092314" src="https://github.com/user-attachments/assets/1ef3a7b5-2fb7-4d01-a4e0-f63e4898c150" />
+<img width="500" height="833" alt="Ekran görüntüsü 2026-06-05 092314" src="https://github.com/user-attachments/assets/1ef3a7b5-2fb7-4d01-a4e0-f63e4898c150" />
 
 ### Start Inspection
 Kalite kontrol sürecinin ana ekranı. Sol panelde mevcut aşama, kalan süre ve bileşen sayım detayları yer alır. Ortada canlı kamera görüntüsü ve YOLO tespit kutuları, sağ panelde ise son denetim sonuçları anlık olarak görünür.
-<img width="1911" height="1013" alt="Ekran görüntüsü 2026-06-05 092223" src="https://github.com/user-attachments/assets/1f976d0b-006e-484f-b983-cd1bd1243df5" />
+<img width="1000" height="1013" alt="Ekran görüntüsü 2026-06-05 092223" src="https://github.com/user-attachments/assets/1f976d0b-006e-484f-b983-cd1bd1243df5" />
 
 ### Test Results
 Denetlenen tüm cihazların geçmişi; tarih, cihaz tipi, seri numarası, PASS/FAIL sonucu ve varsa başarısız olan aşama bilgisiyle birlikte listelenir.
