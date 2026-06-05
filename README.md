@@ -52,8 +52,29 @@ Denetlenen tüm cihazların geçmişi; tarih, cihaz tipi, seri numarası, PASS/F
 <img width="1156" height="782" alt="Ekran görüntüsü 2026-06-05 092241" src="https://github.com/user-attachments/assets/854cbb3d-4ec7-4eef-bd71-c1f715a9d075" />
 
 ### Settings
-Kamera kaynağı, model ağırlığı, görüntü boyutu, güven eşiği ve bileşen doğrulama modu bu ekrandan ayarlanır. Değişiklikler bir sonraki denetimde geçerli olur.
-<img width="907" height="927" alt="Ekran görüntüsü 2026-06-05 092305" src="https://github.com/user-attachments/assets/62d6576c-4e8e-40b9-8e43-dea236996f57" />
+Sistem üç ayar sekmesinden oluşur. Camera sekmesinde kamera kaynağı ve FPS gösterimi ayarlanır. Model sekmesinde YOLO ağırlık dosyası, GPU/CPU seçimi ve görüntü boyutu belirlenir. Detection sekmesinde ise güven eşiği, IOU değeri ve strict mod yapılandırılır. Tüm değişiklikler bir sonraki denetimde geçerli olur.
+<table>
+  <tr>
+    <td align="center"><b>Camera</b><br/><img width="280" src="https://github.com/user-attachments/assets/23fcd4c0-613b-492d-9298-01dba4f9d4a4"/></td>
+    <td align="center"><b>Model</b><br/><img width="280" src="https://github.com/user-attachments/assets/9910b0f5-2edd-4603-a4eb-03e803393423"/></td>
+    <td align="center"><b>Detection</b><br/><img width="280" src="https://github.com/user-attachments/assets/dca5e921-65b8-4355-a7ad-d2a5718b42ab"/></td>
+  </tr>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## Repo icerigi
 
