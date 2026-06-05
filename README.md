@@ -29,13 +29,13 @@ Bu proje aşağıdaki açılardan özgün bir çalışmadır:
 
 ## Özellikler
 
-  - 🎯 **Gerçek zamanlı bileşen tespiti** — YOLOv5s modeli ile 10 sınıf
-  - 🔍 **Otomatik cihaz tanıma** — DM100 / XIO110 komponent sayım skoruna göre otomatik belirlenir, manuel seçim de desteklenir
-  - 📋 **Üç aşamalı denetim akışı** — Yüzey Kontrolü → Etiket → Barkod → Sonuc
-  - ⚠️ **FAIL yönlendirme** — Herhangi bir aşama başarısız olsa bile barkod okunur, izlenebilirlik hiç kopmaz
-  - 💾 **Otomatik kayıt** — Tüm sonuçlar seri numarasıyla birlikte SQLite veritabanına kaydedilir
-  - 🖥️ **Modern arayüz** — PySide6 ile canlı kamera, durum paneli ve geçmiş sonuçlar tek ekranda
-  - ⚙️ **Kolay konfigürasyon** — Yeni cihaz tipi eklemek için sadece YAML dosyası güncellenir, kod değişikliği gerekmez.
+  -  **Gerçek zamanlı bileşen tespiti** — YOLOv5s modeli ile 10 sınıf
+  -  **Otomatik cihaz tanıma** — DM100 / XIO110 komponent sayım skoruna göre otomatik belirlenir, manuel seçim de desteklenir
+  -  **Üç aşamalı denetim akışı** — Yüzey Kontrolü → Etiket → Barkod → Sonuc
+  -  **FAIL yönlendirme** — Herhangi bir aşama başarısız olsa bile barkod okunur, izlenebilirlik hiç kopmaz
+  -  **Otomatik kayıt** — Tüm sonuçlar seri numarasıyla birlikte SQLite veritabanına kaydedilir
+  -  **Modern arayüz** — PySide6 ile canlı kamera, durum paneli ve geçmiş sonuçlar tek ekranda
+  -  **Kolay konfigürasyon** — Yeni cihaz tipi eklemek için sadece YAML dosyası güncellenir, kod değişikliği gerekmez.
     
 ## Sistem Önizlemesi
 > 🎥 Sistem tanıtım ve operatör eğitim videosu için → `qc_system_training_intro.mp4`
