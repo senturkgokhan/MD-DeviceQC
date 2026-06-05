@@ -20,8 +20,8 @@ Sistem geliştirme sürecinde YOLOv5s ile karşılaştırmalı olarak YOLOv8s mo
 
 | Model | Epoch | Görüntü Boyutu | mAP@0.5 | mAP@0.5:0.95 | Precision | Recall |
 |-------|-------|----------------|---------|--------------|-----------|--------|
-| YOLOv8s | 150 | 640 | 0.987 | 0.835 | 0.970 | 0.980 |
-| YOLOv8s | 200 | 640 | 0.987 | 0.820 | 0.970 | 0.980 |
+| YOLOv8s | 150 | 640 | 0.987 | 0.835 | 0.974 | 0.983 |
+| YOLOv8s | 200 | 640 | 0.980 | 0.833 | 0.973 | 0.985 |
 
 **Sonuç:**  
 YOLOv8s metrik olarak iyi sonuçlar üretmiştir ancak sahada PC ve test laptobu üzerinde YOLOv5s'e kıyasla daha yavaş çalışmıştır. Mevcut sistem mimarisiyle entegrasyonu da daha karmaşık olmuştur. Bu nedenle nihai model olarak YOLOv5s  tercih edilmiştir.
