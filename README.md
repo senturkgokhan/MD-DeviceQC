@@ -68,7 +68,7 @@ Sistem üç ayar sekmesinden oluşur. Camera sekmesinde kamera kaynağı ve FPS 
 ```
 MD-DeviceQC/
 ├── yolov5/
-│   ├── qc_launcher.py            ## Uygulamanın başlatıldığı ana dosya (PySide6 arayüz)
+│   ├── qc_launcher.py            # Uygulamanın başlatıldığı ana dosya (PySide6 arayüz)
 │   ├── qc_engine.py              # Kalite kontrol motoru (YOLO tespit + denetim akışı)
 │   ├── inspection_profiles.py    # Cihaz profili yükleme ve doğrulama
 │   ├── app_settings.py           # Kullanıcı ayarları yönetimi
